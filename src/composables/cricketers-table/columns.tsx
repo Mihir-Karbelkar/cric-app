@@ -1,12 +1,10 @@
-// #TODO: Implement retaining of query params in sorting
-
 'use client';
 import Link from '@cric-app/components/ui/link';
 import { TYPE_LABELS } from '@cric-app/constants/player';
 import { TMayBe, TPlayer, TPlayerType } from '@cric-app/types/players';
 import { ArrowDownIcon, ArrowUpIcon } from '@radix-ui/react-icons';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, ArrowUpDownIcon } from 'lucide-react';
+import { ArrowUpDownIcon } from 'lucide-react';
 
 export const getAge = (dob: number) => {
   const now = new Date();
