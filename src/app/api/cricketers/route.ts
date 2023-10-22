@@ -38,6 +38,5 @@ export async function GET(request: NextRequest) {
     parseInt(pg || '0'),
     parseInt(pageSize || '10')
   );
-  console.log(pg, paginatedData, 'PAGINATED');
   return Response.json({ ...paginatedData });
 }

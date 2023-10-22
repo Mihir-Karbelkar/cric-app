@@ -13,7 +13,6 @@ export const getAge = (dob: number) => {
   const utcMilllisecondsSinceEpoch =
     now.getTime() + now.getTimezoneOffset() * 60 * 1000;
 
-  console.log(dob, utcMilllisecondsSinceEpoch, 'DATE');
   return Math.floor(
     (utcMilllisecondsSinceEpoch - dob) / (1000 * 60 * 60 * 24 * 365)
   );

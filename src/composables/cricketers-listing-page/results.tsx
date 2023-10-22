@@ -35,7 +35,6 @@ const Results = async ({
   if (initialState['pagination']) {
     initialState['pagination'].pageIndex = parseInt(pg) || 0;
     initialState['pagination'].pageSize = parseInt(size) || 10;
-    console.log(pg, size, 'SIZE');
   }
 
   return (

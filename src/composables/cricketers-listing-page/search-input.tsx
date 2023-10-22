@@ -78,13 +78,16 @@ function SearchFilters({
           }}
           defaultValue={defaultType}
         >
-          <SelectTrigger className="rounded-r-none w-auto">
+          <SelectTrigger
+            aria-label="Player type"
+            className="rounded-r-none w-auto"
+          >
             <SelectValue placeholder="Player type" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               {TYPE_OPTIONS.map((type) => (
-                <SelectItem key={type} value={type}>
+                <SelectItem aria-label={type} key={type} value={type}>
                   {TYPE_LABELS[type]}
                 </SelectItem>
               ))}
