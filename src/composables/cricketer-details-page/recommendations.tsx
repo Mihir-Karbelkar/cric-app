@@ -19,7 +19,7 @@ const RecommendedCard = ({ player }: { player: TPlayer }) => {
   return (
     <Link className="cursor-pointer" href={`/cricketers/${player.id}`}>
       <Card className="p-4 h-[150px]">
-        <div className="flex md:gap-8 gap-4">
+        <div className="flex gap-4">
           <Avatar>
             <AvatarFallback>{getInitials(player?.name || '')}</AvatarFallback>
           </Avatar>
