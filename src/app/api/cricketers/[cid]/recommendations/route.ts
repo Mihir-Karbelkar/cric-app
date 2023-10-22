@@ -1,5 +1,5 @@
 import { TPlayer } from '@cric-app/types/players';
-import data from '../../players';
+import data from '@cric-app/data-source/players';
 import { NextRequest } from 'next/server';
 
 // Basic scoring mechanism, filter all players with a type then rank them

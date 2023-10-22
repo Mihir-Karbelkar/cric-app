@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import data from '../players';
+import data from '@cric-app/data-source/players';
 
 export async function GET(
   _: NextRequest,
