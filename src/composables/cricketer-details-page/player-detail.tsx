@@ -7,7 +7,6 @@ import {
 } from '@cric-app/components/ui/card';
 import { TYPE_LABELS } from '@cric-app/constants/player';
 import { api } from '@cric-app/lib/api';
-import { delay } from '@cric-app/lib/delay';
 import { epochToJsDate } from '@cric-app/lib/utils';
 import { TGetReponsePlayer, TPlayerType } from '@cric-app/types/players';
 

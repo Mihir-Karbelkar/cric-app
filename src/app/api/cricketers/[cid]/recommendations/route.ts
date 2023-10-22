@@ -1,7 +1,6 @@
-import { TMayBe, TPlayer, TPlayerType } from '@cric-app/types/players';
+import { TPlayer } from '@cric-app/types/players';
 import data from '../../players';
 import { NextRequest } from 'next/server';
-import { delay } from '@cric-app/lib/delay';
 
 // Basic scoring mechanism, filter all players with a type then rank them
 // based on attributes, least score = closest

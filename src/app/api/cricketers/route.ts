@@ -1,7 +1,6 @@
 import { TMayBe, TPlayer, TPlayerType } from '@cric-app/types/players';
 import data from './players';
 import { NextRequest } from 'next/server';
-import { delay } from '@cric-app/lib/delay';
 import { paginate } from '@cric-app/lib/utils';
 
 const getPlayers = (args?: {
