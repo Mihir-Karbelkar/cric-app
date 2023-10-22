@@ -2,10 +2,7 @@ import React, { Fragment, Suspense } from 'react';
 import SearchFilters from '../../../composables/cricketers-listing-page/search-input';
 import SkeletonTable from '@cric-app/components/skeletons/data-table';
 
-import { Button } from '@cric-app/components/ui/button';
-import Link from 'next/link';
 import Results from '@cric-app/composables/cricketers-listing-page/results';
-
 export default function Page({
   searchParams,
 }: {
