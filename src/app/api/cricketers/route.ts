@@ -33,7 +33,6 @@ export async function GET(request: NextRequest) {
   const pageSize = searchParams.get('size');
 
   const args = { type: type as TPlayerType, q };
-  await delay(5000);
   const players = await getPlayers(args);
   const paginatedData = paginate(
     players,
