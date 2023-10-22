@@ -9,7 +9,7 @@ const getFilteredPlayers = async (args?: {
 }): Promise<TPlayer[]> => {
   const players = await getPlayers({ type: args?.type });
   return players.filter((it) =>
-    it.name?.toLowerCase()?.includes(args?.q || '')
+    it.name?.toLowerCase()?.includes(args?.q?.toLowerCase() || '')
   );
 };
 
@@ -21,7 +21,12 @@ export async function GET(request: NextRequest) {
   const pageSize = searchParams.get('size');
 
   const args = { type: type as TPlayerType, q };
-  const players = await getFilteredPlayers(args);
+  let players: TPlayer[] = [];
+  try {
+    players = await getFilteredPlayers(args);
+  } catch (e: any) {
+    return Response.json({ message: e?.message }, { status: 500 });
+  }
   const paginatedData = paginate(
     players,
     parseInt(pg || '0'),
@@ -29,3 +34,4 @@ export async function GET(request: NextRequest) {
   );
   return Response.json({ ...paginatedData });
 }
+export const fetchCache = 'force-no-store';
