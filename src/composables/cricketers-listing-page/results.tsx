@@ -10,10 +10,16 @@ const Results = async ({
   searchParams: Record<string, string>;
 }) => {
   const urlSearchParams = new URLSearchParams(searchParams);
-  const data = (await (
-    await api(`/api/cricketers?${urlSearchParams}`)
-  ).json()) as TGetReponsePlayers;
-  const players = data.items;
+
+  const response = await api(`/api/cricketers?${urlSearchParams}`, {
+    cache: 'no-cache',
+  });
+  if (response.status === 500) {
+    throw new Error('Error');
+  }
+  const data = (await response.json()) as TGetReponsePlayers;
+
+  const players = data.items || [];
   const { sorting, pg, size } = searchParams;
   let initialState: InitialTableState = {
     pagination: {

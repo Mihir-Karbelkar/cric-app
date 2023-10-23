@@ -35,11 +35,17 @@ const RecommendedCard = ({ player }: { player: TPlayer }) => {
   );
 };
 const Recommendations = async ({ pid }: { pid: string }) => {
-  const players = (
-    (await (
-      await api(`/api/cricketers/${pid}/recommendations`)
-    ).json()) as TGetRecommendedPlayersResponse
-  ).players;
+  let players;
+  try {
+    const response = await api(`/api/cricketers/${pid}/recommendations`);
+    if (response.status === 500) {
+      throw new Error('Error');
+    }
+    players = ((await response.json()) as TGetRecommendedPlayersResponse)
+      .players;
+  } catch {
+    throw new Error('Something went wrong!');
+  }
   if (players?.length === 0)
     return <div className="text-xl">No recommendations found!</div>;
   return (

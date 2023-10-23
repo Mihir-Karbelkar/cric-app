@@ -11,10 +11,17 @@ import { epochToJsDate } from '@cric-app/lib/utils';
 import { TGetReponsePlayer, TPlayerType } from '@cric-app/types/players';
 
 const PlayerDetail = async ({ pid }: { pid: string }) => {
-  const player = (
-    (await (await api(`/api/cricketers/${pid}`)).json()) as TGetReponsePlayer
-  ).player;
-
+  let player;
+  try {
+    const response = await api(`/api/cricketers/${pid}`);
+    if (response.status === 500) {
+      throw new Error('Error');
+    }
+    player = ((await response.json()) as TGetReponsePlayer).player;
+  } catch {
+    throw new Error('Something went wrong!');
+  }
+  console.log(player, 'PLAYER');
   return (
     <Card>
       <CardHeader>
