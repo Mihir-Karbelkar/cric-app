@@ -40,7 +40,8 @@ const Recommendations = async ({ pid }: { pid: string }) => {
       await api(`/api/cricketers/${pid}/recommendations`)
     ).json()) as TGetRecommendedPlayersResponse
   ).players;
-
+  if (players?.length === 0)
+    return <div className="text-xl">No recommendations found!</div>;
   return (
     <div className="mt-2 gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
       {players.map((player) => (
