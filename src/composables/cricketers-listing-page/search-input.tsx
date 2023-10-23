@@ -118,6 +118,7 @@ function SearchFilters({
             setSearchValue('');
             setPlayerType('');
           }}
+          shallow
         >
           <Button variant={'ghost'}>Clear all</Button>
         </Link>
