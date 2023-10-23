@@ -53,3 +53,13 @@ export const groupParamsByKey = (params: any) =>
 
     return acc;
   }, {});
+
+export const getAge = (dob: number) => {
+  const now = new Date();
+  const utcMilllisecondsSinceEpoch =
+    now.getTime() + now.getTimezoneOffset() * 60 * 1000;
+
+  return Math.floor(
+    (utcMilllisecondsSinceEpoch - dob) / (1000 * 60 * 60 * 24 * 365)
+  );
+};

@@ -7,8 +7,9 @@ import {
 } from '@cric-app/components/ui/card';
 import { TYPE_LABELS } from '@cric-app/constants/player';
 import { api } from '@cric-app/lib/api';
-import { epochToJsDate } from '@cric-app/lib/utils';
+import { epochToJsDate, getAge } from '@cric-app/lib/utils';
 import { TGetReponsePlayer, TPlayerType } from '@cric-app/types/players';
+import { redirect } from 'next/navigation';
 
 const PlayerDetail = async ({ pid }: { pid: string }) => {
   let player;
@@ -17,17 +18,20 @@ const PlayerDetail = async ({ pid }: { pid: string }) => {
     if (response.status === 500) {
       throw new Error('Error');
     }
+
     player = ((await response.json()) as TGetReponsePlayer).player;
-  } catch {
+  } catch (e) {
     throw new Error('Something went wrong!');
   }
-  console.log(player, 'PLAYER');
+  if (!player) {
+    redirect('/cricketers');
+  }
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="mb-2 text-2xl">{player.name}</CardTitle>
+        <CardTitle className="mb-2 text-2xl">{player?.name}</CardTitle>
         <CardDescription className="text-lg">
-          {player.description}
+          {player?.description}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -50,7 +54,18 @@ const PlayerDetail = async ({ pid }: { pid: string }) => {
               {player?.points || '-'}
             </div>
           </div>
-          <div></div>
+          <div>
+            <div className="text-xl font-bold">Rank</div>
+            <div className="text-sm text-muted-foreground">
+              {player?.rank || '-'}
+            </div>
+          </div>
+          <div>
+            <div className="text-xl font-bold">Age</div>
+            <div className="text-sm text-muted-foreground">
+              {player?.dob ? getAge(player?.dob) : '-'}
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>

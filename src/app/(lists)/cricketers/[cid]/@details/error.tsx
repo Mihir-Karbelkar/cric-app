@@ -1,11 +1,10 @@
 'use client'; // Error components must be Client Components
 
-import { revalidatePath } from 'next/cache';
+import { Button } from '@cric-app/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useTransition } from 'react';
 
 export default function Error({
-  error,
   reset,
 }: {
   error: Error & { digest?: string };
@@ -24,15 +23,16 @@ export default function Error({
   }, [isPending, reset]);
   return (
     <div>
-      <h2>Something went wrong!</h2>
-      <button
+      <h2 className="text-xl font-bold">Something went wrong!</h2>
+      <Button
+        variant={'destructive'}
         onClick={() => {
           triedAgain.current = true;
           startTransition(() => router.refresh());
         }}
       >
         Try again
-      </button>
+      </Button>
     </div>
   );
 }

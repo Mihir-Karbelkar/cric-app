@@ -1,20 +1,11 @@
 'use client';
 import Link from '@cric-app/components/ui/link';
 import { TYPE_LABELS } from '@cric-app/constants/player';
+import { getAge } from '@cric-app/lib/utils';
 import { TMayBe, TPlayer, TPlayerType } from '@cric-app/types/players';
 import { ArrowDownIcon, ArrowUpIcon } from '@radix-ui/react-icons';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDownIcon } from 'lucide-react';
-
-export const getAge = (dob: number) => {
-  const now = new Date();
-  const utcMilllisecondsSinceEpoch =
-    now.getTime() + now.getTimezoneOffset() * 60 * 1000;
-
-  return Math.floor(
-    (utcMilllisecondsSinceEpoch - dob) / (1000 * 60 * 60 * 24 * 365)
-  );
-};
 
 export const columns: ColumnDef<TMayBe<TPlayer>>[] = [
   {

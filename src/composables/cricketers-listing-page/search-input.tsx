@@ -55,6 +55,7 @@ function SearchFilters({
   const refreshQueryParams = debounce(onChange, 400);
 
   const [searchValue, setSearchValue] = useState<string>(defaultValue || '');
+  const [playerType, setPlayerType] = useState<string>(defaultType || '');
 
   return (
     <div className="lg:w-2/3 md:w-full flex gap-2 items-center justify-end">
@@ -75,8 +76,9 @@ function SearchFilters({
             startTransition(() => {
               router.push(`${pathname}${query}`);
             });
+            setPlayerType(value);
           }}
-          defaultValue={defaultType}
+          value={playerType}
         >
           <SelectTrigger
             aria-label="Player type"
@@ -114,6 +116,7 @@ function SearchFilters({
           href={'/cricketers'}
           onClick={() => {
             setSearchValue('');
+            setPlayerType('');
           }}
         >
           <Button variant={'ghost'}>Clear all</Button>

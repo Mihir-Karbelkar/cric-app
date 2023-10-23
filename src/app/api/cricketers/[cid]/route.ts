@@ -7,7 +7,6 @@ export async function GET(
   { params }: { params: { cid: string } }
 ) {
   let players: TPlayer[] = [];
-  console.log('STARTING PLAYER');
   try {
     players = await getPlayers();
   } catch (e: any) {
@@ -16,9 +15,10 @@ export async function GET(
       { status: 500 }
     );
   }
-  console.log('ENDING PLAYER');
+  const player =
+    (players || [])?.find((player) => player.id === params.cid) || null;
 
   return Response.json({
-    player: players.find((player) => player.id === params.cid),
+    player,
   });
 }

@@ -40,7 +40,18 @@ const PlayerDetailSkeleton = () => {
               <Skeleton className="h-2 w-16 rounded-full" />{' '}
             </div>
           </div>
-          <div></div>
+          <div>
+            <div className="text-xl font-bold">Rank</div>
+            <div>
+              <Skeleton className="h-2 w-16 rounded-full" />{' '}
+            </div>
+          </div>
+          <div>
+            <div className="text-xl font-bold">Age</div>
+            <div>
+              <Skeleton className="h-2 w-16 rounded-full" />{' '}
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>

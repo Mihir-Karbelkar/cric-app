@@ -39,7 +39,6 @@ export async function GET(
   { params }: { params: { cid: string } }
 ) {
   let data;
-  console.log('STARTING RECOMMENDATIONS');
 
   try {
     data = await getPlayers();
@@ -49,8 +48,8 @@ export async function GET(
       { status: 500 }
     );
   }
-  console.log('RECOMMENDATIONS');
   const player = data.find((player) => player.id === params?.cid) as TPlayer;
+  if (!player) return Response.json({ players: [] });
   const players: TPlayer[] = getRecommendations(player, data) as TPlayer[];
   return Response.json({ players });
 }
